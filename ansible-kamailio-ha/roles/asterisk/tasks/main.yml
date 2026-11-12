@@ -1,0 +1,6 @@
+---
+- name: Refuse to apply incomplete asterisk role
+  ansible.builtin.fail:
+    msg: >-
+      Role 'asterisk' is a placeholder. Port and validate it for the approved OS,
+      package versions and target architecture before enabling deployment.
