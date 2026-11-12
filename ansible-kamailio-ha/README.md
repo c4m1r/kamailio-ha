@@ -15,7 +15,7 @@
 - публичные тестовые адреса из старого inventory;
 - пользовательские SSH-файлы, локальные настройки и бинарные пакеты.
 
-Исходная ветка `master` оставлена без изменений для сравнения.
+Исходная ветка `master` оставлена без изменений для сравнения. 35 текстовых файлов из `.ansible/` импортированы в `legacy/source-ansible/` как исторический baseline. Локальные SSH-файлы, root dotfiles и bundled binary packages исключены. Импортированные задачи не исполнять напрямую: они привязаны к старой платформе и требуют переписывания.
 
 ## Целевая топология
 
@@ -37,7 +37,7 @@
 - `group_vars/all.yml.example` — переменные и адреса-заглушки.
 - `playbooks/site.yml` — основной orchestration entrypoint.
 - `playbooks/preflight.yml` — только проверка inventory/facts.
-- `roles/*` — роли по компонентам.
+- `roles/*` — fail-closed placeholders для common, Kamailio, RTPengine, Asterisk, Patroni и HAProxy; их реализация ещё не завершена.
 - `docs/MIGRATION_NOTES.md` — перенос и известные несовместимости.
 
 ## Первые команды
@@ -51,7 +51,7 @@ ansible-playbook -i inventories/lab/hosts.ini playbooks/preflight.yml --syntax-c
 ansible-playbook -i inventories/lab/hosts.ini playbooks/preflight.yml --check
 ```
 
-До настройки адресов и проверки доступа запускать только `preflight.yml`. `site.yml` пока содержит отключённые deployment tags и не предназначен для применения.
+До настройки адресов и проверки доступа запускать только `preflight.yml`. `site.yml` содержит защитный gate; все component roles пока намеренно завершаются ошибкой. Это предотвращает случайный deployment незавершённой конфигурации.
 
 ## Архитектурные правила
 
