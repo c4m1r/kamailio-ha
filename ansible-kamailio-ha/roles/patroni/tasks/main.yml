@@ -1,0 +1,6 @@
+---
+- name: Refuse to apply incomplete patroni role
+  ansible.builtin.fail:
+    msg: >-
+      Role 'patroni' is a placeholder. Port and validate it for the approved OS,
+      package versions and target architecture before enabling deployment.
