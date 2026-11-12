@@ -1,0 +1,14 @@
+---
+# Deployment intentionally gated until OS/version/IP/firewall decisions are approved.
+- name: Target stack deployment (gated)
+  hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Stop before making changes
+      ansible.builtin.fail:
+        msg: >-
+          Deployment is disabled. Complete the decision register, validate the
+          inventory and role implementation, then explicitly remove this gate
+          in a reviewed change.
+      when: not (deployment_enabled | default(false) | bool)
