@@ -1,0 +1,41 @@
+[kamailio]
+kamailio1 ansible_host=192.0.2.11
+kamailio2 ansible_host=192.0.2.12
+
+[rtpengine]
+rtpengine1 ansible_host=192.0.2.31
+rtpengine2 ansible_host=192.0.2.32
+
+[asterisk]
+asterisk1 ansible_host=192.0.2.21
+asterisk2 ansible_host=192.0.2.22
+asterisk3 ansible_host=192.0.2.23
+asterisk4 ansible_host=192.0.2.24
+
+[postgresql_patroni]
+pg1 ansible_host=192.0.2.41
+pg2 ansible_host=192.0.2.42
+pg3 ansible_host=192.0.2.43
+
+[haproxy]
+haproxy1 ansible_host=192.0.2.51
+haproxy2 ansible_host=192.0.2.52
+
+[dcs]
+dcs1 ansible_host=192.0.2.61
+dcs2 ansible_host=192.0.2.62
+dcs3 ansible_host=192.0.2.63
+
+[voice:children]
+kamailio
+rtpengine
+asterisk
+
+[database:children]
+postgresql_patroni
+haproxy
+dcs
+
+[all:vars]
+ansible_user=ansible
+ansible_python_interpreter=/usr/bin/python3
