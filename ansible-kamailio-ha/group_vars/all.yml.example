@@ -1,0 +1,45 @@
+---
+# All addresses below use RFC 5737 TEST-NET-1 and are documentation placeholders.
+# Replace only after the project IP plan is approved.
+project_environment: lab
+deployment_enabled: false
+
+sip:
+  listen_port: 5060
+  transport: udp
+  tls_port: 5061
+  rtpengine_ng_port: 2223
+  rtpengine_set_id: 1
+
+asterisk:
+  version: "22"
+  pjsip_port: 5060
+  rtp_start: 16384
+  rtp_end: 32768
+  dispatcher_algorithm: 10
+  dispatcher_probe_interval: 10
+
+kamailio:
+  version: "TBD"
+  dispatcher_algorithm: 10
+  ds_hash_size: 9
+  probe_mode: "OPTIONS"
+  destinations: []
+
+rtpengine:
+  version: "TBD"
+  interface: "TBD"
+  listen_ng: "127.0.0.1:2223"
+  media_min_port: 30000
+  media_max_port: 40000
+
+postgresql:
+  major_version: "TBD"
+  patroni_version: "TBD"
+  dcs_backend: "TBD"
+  writer_endpoint: "TBD"
+
+network:
+  trusted_sip_networks: []
+  trusted_rtp_networks: []
+  management_networks: []
